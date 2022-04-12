@@ -1,0 +1,18 @@
+include MANIFEST.in
+include requirements.txt
+include *.json
+include *.md
+include *.py
+include *.txt
+recursive-include momscode *.css
+recursive-include momscode *.csv
+recursive-include momscode *.html
+recursive-include momscode *.ico
+recursive-include momscode *.js
+recursive-include momscode *.json
+recursive-include momscode *.md
+recursive-include momscode *.png
+recursive-include momscode *.py
+recursive-include momscode *.svg
+recursive-include momscode *.txt
+recursive-exclude momscode *.pyc
