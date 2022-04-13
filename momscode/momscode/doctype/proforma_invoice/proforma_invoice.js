@@ -21,7 +21,38 @@ frappe.ui.form.on('Proforma Invoice', {
 		frm.add_fetch('customer','mobile_no','mobile_number');
 		frm.add_fetch('customer','email_id','contact_email');
 		
+		},
+	terms:function(frm){
+		frm.add_fetch('terms','terms','terms_and_conditions_details')
+	},
+	sales_order_number:function(frm){
+		if(frm.doc.sales_order_number){
+			frm.clear_table('items');
+			frappe.model.with_doc("Sales Order",frm.doc.sales_order_number,function(){
+				let sales=frappe.model.get_doc("Sales Order",frm.doc.sales_order_number)
+				let total=0;
+				for(let i=0;i<sales.items.length;i++){
+					var row=frm.add_child('items');
+					row.item_code=sales.items[i].item_code;
+					row.quantity=sales.items[i].qty;
+
+					// row.operation_time_in_minutes=rout.operations[i].time_in_mins;
+					// row.workstation=rout.operations[i].workstation;
+					// row.net_hour_rate=rout.operations[i].hour_rate;
+					// row.operating_cost=rout.operations[i].operating_cost;
+					// total += row.operating_cost;
+					//    frm.set_value('total_operational_cost', total);
+					// refresh_field('total_operational_cost')
+					
+
+				}
+				cur_frm.refresh_field(items);
+
+
+			})
+
 		}
+	},
 
 });
 frappe.ui.form.on("Sales Order Item ", "item_code", function(frm, cdt, cdn) {//assign amount to the amount column by multiply rate*qty	
