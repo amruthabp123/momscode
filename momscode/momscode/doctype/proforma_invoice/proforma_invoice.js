@@ -34,18 +34,13 @@ frappe.ui.form.on('Proforma Invoice', {
 				var q=0;
 				for(let i=0;i<sales.items.length;i++){
 					var row=frm.add_child('items');
-					row.item_code=sales.items[i].item_code;
+					row.item_name=sales.items[i].item_code;
 					row.qty=sales.items[i].qty;
 					row.uom=sales.items[i].uom;
 					row.rate=sales.items[i].rate;
 					row.amount=sales.items[i].amount;
-
-					// row.operation_time_in_minutes=rout.operations[i].time_in_mins;
-					// row.workstation=rout.operations[i].workstation;
-					// row.net_hour_rate=rout.operations[i].hour_rate;
-					// row.operating_cost=rout.operations[i].operating_cost;
 					total += row.amount;
-					   frm.set_value('total', total);
+					frm.set_value('total', total);
 					refresh_field(total)
 					q+=row.qty;
 					frm.set_value('total_quantity',q)
@@ -53,6 +48,10 @@ frappe.ui.form.on('Proforma Invoice', {
 					
 
 				}
+				// frm.set_value('total', total);
+				// refresh_field(total);
+				// frm.set_value('total_quantity',q)
+				// refresh_field(total_quantity);
 				cur_frm.refresh_field(items);
 
 
@@ -64,7 +63,7 @@ frappe.ui.form.on('Proforma Invoice', {
 });
 
 
-frappe.ui.form.on("Sales Order Item", "rate", function(frm, cdt, cdn) {//assign amount to the amount column by multiply rate*qty
+frappe.ui.form.on("Momsitem", "rate", function(frm, cdt, cdn) {//assign amount to the amount column by multiply rate*qty
     var d = locals[cdt][cdn];
     frappe.model.set_value(d.doctype,d.name,"amount",d.rate*d.qty); //qty is changed the amount value is also changed
     var total = 0; // The total value of amount in each row is assign to raw_material_cost field of parent table
@@ -78,4 +77,17 @@ frappe.ui.form.on("Sales Order Item", "rate", function(frm, cdt, cdn) {//assign 
 
 
 });
-
+// frappe.ui.form.on('Sales Order Item', {
+// 	qty: function(frm,cdt, cdn) {
+// 	    var d = locals[cdt][cdn]
+//         d.amount = d.qty * d.rate
+//         cur_frm.refresh_field(d.parentfield)
+       
+// 	},
+// 	rate: function(frm,cdt, cdn) {
+// 	    var d = locals[cdt][cdn]
+//         d.amount = d.qty * d.rate
+//         cur_frm.refresh_field(d.parentfield)
+       
+// 	}
+// });

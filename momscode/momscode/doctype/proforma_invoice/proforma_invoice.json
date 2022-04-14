@@ -21,7 +21,6 @@
   "contact_person",
   "shipping_address",
   "column_break_15",
-  "phone",
   "mobile_number",
   "contact_email",
   "section_break_16",
@@ -95,11 +94,6 @@
    "options": "Contact"
   },
   {
-   "fieldname": "phone",
-   "fieldtype": "Data",
-   "label": "Phone"
-  },
-  {
    "fieldname": "mobile_number",
    "fieldtype": "Read Only",
    "label": "Mobile Number"
@@ -119,7 +113,7 @@
    "fieldname": "items",
    "fieldtype": "Table",
    "label": "Items",
-   "options": "Sales Order Item"
+   "options": "Momsitem"
   },
   {
    "fieldname": "section_break_18",
@@ -127,12 +121,12 @@
   },
   {
    "fieldname": "total_quantity",
-   "fieldtype": "Float",
+   "fieldtype": "Int",
    "label": "Total Quantity"
   },
   {
    "fieldname": "total",
-   "fieldtype": "Data",
+   "fieldtype": "Currency",
    "label": "Total"
   },
   {
@@ -182,7 +176,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2022-04-14 10:42:21.253024",
+ "modified": "2022-04-14 16:32:20.318221",
  "modified_by": "Administrator",
  "module": "Momscode",
  "name": "Proforma Invoice",
