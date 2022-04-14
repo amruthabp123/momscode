@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_rename": 1,
+ "autoname": "PRO-INV-.YYYY.-.####",
  "creation": "2022-04-12 16:01:42.640844",
  "doctype": "DocType",
  "editable_grid": 1,
@@ -181,7 +182,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2022-04-13 16:08:27.313798",
+ "modified": "2022-04-14 10:42:21.253024",
  "modified_by": "Administrator",
  "module": "Momscode",
  "name": "Proforma Invoice",

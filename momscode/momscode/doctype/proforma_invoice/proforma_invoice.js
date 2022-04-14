@@ -30,19 +30,26 @@ frappe.ui.form.on('Proforma Invoice', {
 			frm.clear_table('items');
 			frappe.model.with_doc("Sales Order",frm.doc.sales_order_number,function(){
 				let sales=frappe.model.get_doc("Sales Order",frm.doc.sales_order_number)
-				let total=0;
+				var total=0;
+				var q=0;
 				for(let i=0;i<sales.items.length;i++){
 					var row=frm.add_child('items');
 					row.item_code=sales.items[i].item_code;
-					row.quantity=sales.items[i].qty;
+					row.qty=sales.items[i].qty;
+					row.uom=sales.items[i].uom;
+					row.rate=sales.items[i].rate;
+					row.amount=sales.items[i].amount;
 
 					// row.operation_time_in_minutes=rout.operations[i].time_in_mins;
 					// row.workstation=rout.operations[i].workstation;
 					// row.net_hour_rate=rout.operations[i].hour_rate;
 					// row.operating_cost=rout.operations[i].operating_cost;
-					// total += row.operating_cost;
-					//    frm.set_value('total_operational_cost', total);
-					// refresh_field('total_operational_cost')
+					total += row.amount;
+					   frm.set_value('total', total);
+					refresh_field(total)
+					q+=row.qty;
+					frm.set_value('total_quantity',q)
+					refresh_field(total_quantity)
 					
 
 				}
@@ -55,25 +62,20 @@ frappe.ui.form.on('Proforma Invoice', {
 	},
 
 });
-frappe.ui.form.on("Sales Order Item ", "item_code", function(frm, cdt, cdn) {//assign amount to the amount column by multiply rate*qty	
-	var d = locals[cdt][cdn];
-	frappe.model.set_value(d.doctype,d.name,"qty",1); //qty is changed the amount value is also changed
-	// var tota = 0; // The total value of amount in each row is assign to raw_material_cost field of parent table
-	// frm.doc.items.forEach(function(d) { tota += d.amount; });
-	// frm.set_value('total', tota);
-	// refresh_field('total')
 
-});
+
 frappe.ui.form.on("Sales Order Item", "rate", function(frm, cdt, cdn) {//assign amount to the amount column by multiply rate*qty
     var d = locals[cdt][cdn];
     frappe.model.set_value(d.doctype,d.name,"amount",d.rate*d.qty); //qty is changed the amount value is also changed
     var total = 0; // The total value of amount in each row is assign to raw_material_cost field of parent table
     frm.doc.items.forEach(function(d) { total += d.amount; });
     frm.set_value('total', total);
+	cur_frm.refresh_field(total)
 	var q=0;
 	frm.doc.items.forEach(function(d) { q += d.qty; });
     frm.set_value('total_quantity', q);
-    
+    cur_frm.refresh_field(total_quantity);
+
 
 });
 
