@@ -52,7 +52,7 @@ frappe.ui.form.on('Proforma Invoice', {
 				refresh_field(total);
 				frm.set_value('total_quantity',q)
 				refresh_field(total_quantity);
-				cur_frm.refresh_field(items);
+				//cur_frm.refresh_field(items);
 
 
 			})
