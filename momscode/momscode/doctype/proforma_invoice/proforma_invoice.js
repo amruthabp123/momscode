@@ -16,8 +16,8 @@ frappe.ui.form.on('Proforma Invoice', {
 		})
 	},
 	setup: function(frm) {
-		frm.add_fetch('customer','primary_address','shipping_address');
-		frm.add_fetch('customer','customer_primary_address','customer_address');
+		frm.add_fetch('customer','primary_address','customer_address');
+		frm.add_fetch('customer','customer_primary_contact','contact_person');
 		frm.add_fetch('customer','mobile_no','mobile_number');
 		frm.add_fetch('customer','email_id','contact_email');
 		
@@ -43,15 +43,15 @@ frappe.ui.form.on('Proforma Invoice', {
 					frm.set_value('total', total);
 					refresh_field(total)
 					q+=row.qty;
-					frm.set_value('total_quantity',q)
-					refresh_field(total_quantity)
+					frm.set_value('total_quantity',q);
+					refresh_field(total_quantity);
 					
 
 				}
-				// frm.set_value('total', total);
-				// refresh_field(total);
-				// frm.set_value('total_quantity',q)
-				// refresh_field(total_quantity);
+				frm.set_value('total', total);
+				refresh_field(total);
+				frm.set_value('total_quantity',q)
+				refresh_field(total_quantity);
 				cur_frm.refresh_field(items);
 
 
@@ -59,8 +59,26 @@ frappe.ui.form.on('Proforma Invoice', {
 
 		}
 	},
+	// qty: function(frm, cdt, cdn) {
+    //     var d = locals[cdt][cdn]
+    //      //d.qty = d.qty * d.uom
+    //     d.amount = d.qty * d.rate
+	// 	cur_frm.refresh_field(d.parentfield)
+	// }
+
 
 });
+// frappe.ui.form.on("Momsitem", {
+// 	item_name: function(frm,cdt,cdn) {
+// 		var row = locals[cdt][cdn];
+// 		if (frm.doc.sales_order_number) {
+// 			refresh_field("item_name", cdn, "items");
+// 		}
+// 	 	else {
+// 			 frm.script_manager.copy_from_first_row("items", row);
+// 			}
+// 	}
+// });
 
 
 frappe.ui.form.on("Momsitem", "rate", function(frm, cdt, cdn) {//assign amount to the amount column by multiply rate*qty
@@ -77,17 +95,17 @@ frappe.ui.form.on("Momsitem", "rate", function(frm, cdt, cdn) {//assign amount t
 
 
 });
-// frappe.ui.form.on('Sales Order Item', {
-// 	qty: function(frm,cdt, cdn) {
-// 	    var d = locals[cdt][cdn]
-//         d.amount = d.qty * d.rate
-//         cur_frm.refresh_field(d.parentfield)
-       
-// 	},
-// 	rate: function(frm,cdt, cdn) {
-// 	    var d = locals[cdt][cdn]
-//         d.amount = d.qty * d.rate
-//         cur_frm.refresh_field(d.parentfield)
-       
-// 	}
-// });
+frappe.ui.form.on("Momsitem", "qty", function(frm, cdt, cdn) {//assign amount to the amount column by multiply rate*qty
+    var d = locals[cdt][cdn];
+    frappe.model.set_value(d.doctype,d.name,"amount",d.rate*d.qty); //qty is changed the amount value is also changed
+    var total = 0; // The total value of amount in each row is assign to raw_material_cost field of parent table
+    frm.doc.items.forEach(function(d) { total += d.amount; });
+    frm.set_value('total', total);
+	cur_frm.refresh_field(total)
+	var q=0;
+	frm.doc.items.forEach(function(d) { q += d.qty; });
+    frm.set_value('total_quantity', q);
+    cur_frm.refresh_field(total_quantity);
+
+
+});

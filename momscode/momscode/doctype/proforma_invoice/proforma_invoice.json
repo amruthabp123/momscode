@@ -14,12 +14,10 @@
   "sales_order_number",
   "column_break_7",
   "date",
-  "posting_time",
   "payment_due_date",
   "address_and_contact_section",
   "customer_address",
   "contact_person",
-  "shipping_address",
   "column_break_15",
   "mobile_number",
   "contact_email",
@@ -67,11 +65,6 @@
    "label": "Date"
   },
   {
-   "fieldname": "posting_time",
-   "fieldtype": "Time",
-   "label": "Posting Time"
-  },
-  {
    "fieldname": "payment_due_date",
    "fieldtype": "Date",
    "label": "Payment Due Date"
@@ -83,7 +76,7 @@
   },
   {
    "fieldname": "customer_address",
-   "fieldtype": "Link",
+   "fieldtype": "Read Only",
    "label": "Customer Address",
    "options": "Address"
   },
@@ -137,13 +130,17 @@
   {
    "fieldname": "terms",
    "fieldtype": "Link",
+   "in_list_view": 1,
    "label": "Terms",
-   "options": "Terms and Conditions"
+   "options": "Terms and Conditions",
+   "reqd": 1
   },
   {
    "fieldname": "terms_and_conditions_details",
    "fieldtype": "Text Editor",
-   "label": "Terms and Conditions Details"
+   "in_list_view": 1,
+   "label": "Terms and Conditions Details",
+   "reqd": 1
   },
   {
    "fieldname": "column_break_7",
@@ -158,12 +155,6 @@
    "fieldtype": "Column Break"
   },
   {
-   "fieldname": "shipping_address",
-   "fieldtype": "Read Only",
-   "label": "Shipping Address",
-   "print_hide": 1
-  },
-  {
    "fieldname": "amended_from",
    "fieldtype": "Link",
    "label": "Amended From",
@@ -176,7 +167,7 @@
  "index_web_pages_for_search": 1,
  "is_submittable": 1,
  "links": [],
- "modified": "2022-04-14 16:32:20.318221",
+ "modified": "2022-04-18 15:08:27.416275",
  "modified_by": "Administrator",
  "module": "Momscode",
  "name": "Proforma Invoice",
