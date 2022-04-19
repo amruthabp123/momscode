@@ -25,40 +25,40 @@ frappe.ui.form.on('Proforma Invoice', {
 	terms:function(frm){
 		frm.add_fetch('terms','terms','terms_and_conditions_details')
 	},
-	sales_order_number:function(frm){
-		if(frm.doc.sales_order_number){
-			frm.clear_table('items');
-			frappe.model.with_doc("Sales Order",frm.doc.sales_order_number,function(){
-				let sales=frappe.model.get_doc("Sales Order",frm.doc.sales_order_number)
-				var total=0;
-				var q=0;
-				for(let i=0;i<sales.items.length;i++){
-					var row=frm.add_child('items');
-					row.item_name=sales.items[i].item_code;
-					row.qty=sales.items[i].qty;
-					row.uom=sales.items[i].uom;
-					row.rate=sales.items[i].rate;
-					row.amount=sales.items[i].amount;
-					total += row.amount;
-					frm.set_value('total', total);
-					refresh_field(total)
-					q+=row.qty;
-					frm.set_value('total_quantity',q);
-					refresh_field(total_quantity);
+	// sales_order_number:function(frm){
+	// 	if(frm.doc.sales_order_number){
+	// 		frm.clear_table('items');
+	// 		frappe.model.with_doc("Sales Order",frm.doc.sales_order_number,function(){
+	// 			let sales=frappe.model.get_doc("Sales Order",frm.doc.sales_order_number)
+	// 			var total=0;
+	// 			var q=0;
+	// 			for(let i=0;i<sales.items.length;i++){
+	// 				var row=frm.add_child('items');
+	// 				row.item_name=sales.items[i].item_code;
+	// 				row.qty=sales.items[i].qty;
+	// 				row.uom=sales.items[i].uom;
+	// 				row.rate=sales.items[i].rate;
+	// 				row.amount=sales.items[i].amount;
+	// 				q+=row.qty;
+	// 				frm.set_value('total_quantity',q);
+	// 				refresh_field(total_quantity);
+	// 				total += row.amount;
+	// 				frm.set_value('total', total);
+	// 				refresh_field(total)
 					
 
-				}
-				frm.set_value('total', total);
-				refresh_field(total);
-				frm.set_value('total_quantity',q)
-				refresh_field(total_quantity);
-				//cur_frm.refresh_field(items);
+	// 			}
+	// 			frm.set_value('total', total);
+	// 			cur_frm.refresh_field(total);
+	// 			frm.set_value('total_quantity',q)
+	// 			cur_frm.refresh_field(total_quantity);
+	// 			cur_frm.refresh_field(items);
 
 
-			})
+	// 		})
 
-		}
-	},
+	// 	}
+	// },
 	// qty: function(frm, cdt, cdn) {
     //     var d = locals[cdt][cdn]
     //      //d.qty = d.qty * d.uom
