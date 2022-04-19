@@ -15,13 +15,13 @@ frappe.ui.form.on('Proforma Invoice', {
 			}
 		})
 	},
-	setup: function(frm) {
-		frm.add_fetch('customer','primary_address','customer_address');
-		frm.add_fetch('customer','customer_primary_contact','contact_person');
-		frm.add_fetch('customer','mobile_no','mobile_number');
-		frm.add_fetch('customer','email_id','contact_email');
+	// setup: function(frm) {
+	// 	frm.add_fetch('customer','primary_address','customer_address');
+	// 	frm.add_fetch('customer','customer_primary_contact','contact_person');
+	// 	frm.add_fetch('customer','mobile_no','mobile_number');
+	// 	frm.add_fetch('customer','email_id','contact_email');
 		
-		},
+	// 	},
 	terms:function(frm){
 		frm.add_fetch('terms','terms','terms_and_conditions_details')
 	},
