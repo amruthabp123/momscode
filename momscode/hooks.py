@@ -178,6 +178,5 @@ user_data_fields = [
 # auth_hooks = [
 # 	"momscode.auth.validate"
 # ]
-fixtures=["dt":"Sales Order"
-]
+fixtures=["dt":"Sales Order"]
 
