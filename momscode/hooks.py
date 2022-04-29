@@ -31,7 +31,8 @@ app_license = "MIT"
 # page_js = {"page" : "public/js/file.js"}
 
 # include js in doctype views
-#doctype_js = {"Sales Order" : "public/js/sales_order.js"}
+doctype_js = {"Attendance Request": "public/js/attendance_request.js"}
+
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
 # doctype_calendar_js = {"doctype" : "public/js/doctype_calendar.js"}
@@ -95,13 +96,18 @@ app_license = "MIT"
 # ---------------
 # Hook on document methods and events
 
-# doc_events = {
-# 	"*": {
-# 		"on_update": "method",
-# 		"on_cancel": "method",
-# 		"on_trash": "method"
-#	}
-# }
+doc_events = {
+#  	"Sales Order": {
+#  		"on_submit": "momscode/momscode/sales_order.make_proforma_invoice",
+# # 		"on_cancel": "method",
+# # 		"on_trash": "method"
+# 	},
+	# "Attendance Request": {
+	# 	"validate": "momscode.doc_events.attendance_request.ss",
+		
+
+	# },
+}
 
 # Scheduled Tasks
 # ---------------
@@ -178,5 +184,14 @@ user_data_fields = [
 # auth_hooks = [
 # 	"momscode.auth.validate"
 # ]
-fixtures=["dt":"Sales Order"]
+fixtures = [{
+    "dt": "Custom Field",
+    "filters": [
+    ["name", "in", ["Attendance Request-salary_structure", 
+					"Attendance Request-basic",
+					"Attendance Request-overtime_hour",
+					"Attendance Request-overtime_multiplication_factor",
+					"Employee-overtime_multiplication_factor"]]
+  ]
+}]
 
