@@ -191,7 +191,8 @@ fixtures = [{
 					"Attendance Request-basic",
 					"Attendance Request-overtime_hour",
 					"Attendance Request-overtime_multiplication_factor",
-					"Employee-overtime_multiplication_factor"]]
+					"Employee-overtime_multiplication_factor",
+					"Attendance Request-overtime_allowance"]]
   ]
 }]
 
