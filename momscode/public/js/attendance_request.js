@@ -21,7 +21,8 @@ frappe.ui.form.on("Attendance Request",{
 					"empcode":frm.doc.employee
 				},
 				callback:function(r){
-                    frm.doc.overtime_multiplication_factor=r.message
+                    frm.doc.overtime_multiplication_factor=r.message[0]
+                    frm.doc.employment_type=r.message[1]
                     cur_frm.refresh_field("overtime_multiplication_factor")
                 }
             })
@@ -34,8 +35,18 @@ frappe.ui.form.on("Attendance Request",{
     },
     //calculation to find out the overtime allowance
     overtime_hour: function () {
-        cur_frm.doc.overtime_allowance=(cur_frm.doc.basic / (30 * 8)) * cur_frm.doc.overtime_hour * cur_frm.doc.overtime_multiplication_factor
+        if(cur_frm.doc.employment_type === 'Contract'){
+            cur_frm.doc.overtime_allowance =(cur_frm.doc.basic/ 8) * cur_frm.doc.overtime_hour * cur_frm.doc.overtime_multiplication_factor
             cur_frm.refresh_field("overtime_allowance")
+        }
+        else{
+            cur_frm.doc.overtime_allowance=(cur_frm.doc.basic / (30 * 8)) * cur_frm.doc.overtime_hour * cur_frm.doc.overtime_multiplication_factor
+            cur_frm.refresh_field("overtime_allowance")
+
+         
+        }
+
+        
     
         }
     

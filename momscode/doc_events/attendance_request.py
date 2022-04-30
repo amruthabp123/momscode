@@ -18,11 +18,9 @@ def test(item):
 	return data[0]
 @frappe.whitelist()
 def otm_factor(empcode):
-	data2=frappe.db.sql("""SELECT overtime_multiplication_factor FROM `tabEmployee` WHERE name=%s""",(empcode),as_dict=1)
-	if data2:
-		return data2[0]. overtime_multiplication_factor
-	else:
-		return "0"
+	data2=frappe.db.sql("""SELECT overtime_multiplication_factor,employment_type FROM `tabEmployee` WHERE name=%s""",(empcode),as_dict=1)
+	return data2[0]. overtime_multiplication_factor if len(data2)>0 else "",data2[0].employment_type if len(data2)>0 else ""
+
 
 
 
