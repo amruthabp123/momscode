@@ -31,7 +31,8 @@ app_license = "MIT"
 # page_js = {"page" : "public/js/file.js"}
 
 # include js in doctype views
-doctype_js = {"Attendance Request": "public/js/attendance_request.js"}
+doctype_js = {"Attendance Request": "public/js/attendance_request.js",
+			"Sales Order":"public/js/sales_order.js",}
 
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
@@ -97,11 +98,11 @@ doctype_js = {"Attendance Request": "public/js/attendance_request.js"}
 # Hook on document methods and events
 
 doc_events = {
-#  	"Sales Order": {
-#  		"on_submit": "momscode/momscode/sales_order.make_proforma_invoice",
+ 	"Sales Order": {
+ 		"validate": "momscode.doc_events.sales_order.make_proforma_invoice",
 # # 		"on_cancel": "method",
 # # 		"on_trash": "method"
-# 	},
+ 	},
 	# "Attendance Request": {
 	# 	"validate": "momscode.doc_events.attendance_request.ss",
 		
