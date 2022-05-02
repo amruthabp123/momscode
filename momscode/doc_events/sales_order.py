@@ -33,8 +33,9 @@ def _make_proforma_invoice(source_name,target_doc=None):
 			"doctype":"Proforma Invoice",
 			"field_map":{
 				"company_address_display":"customer_address",
-				"company_address":"contact_person",
-				"contact_mobile":"mobile_number",
+				"contact_person":"contact_person",
+				# "contact_mobile":"mobile_number",
+				"contact_phone":"mobile_number",
 				"contact_email":"contact_email",
 				"total_qty":"total_quantity"
 			}
