@@ -99,7 +99,7 @@ doctype_js = {"Attendance Request": "public/js/attendance_request.js",
 
 doc_events = {
  	"Sales Order": {
- 		"validate": "momscode.doc_events.sales_order.make_proforma_invoice",
+ 		"on_submit": "momscode.doc_events.sales_order.make_proforma_invoice",
 # # 		"on_cancel": "method",
 # # 		"on_trash": "method"
  	},
