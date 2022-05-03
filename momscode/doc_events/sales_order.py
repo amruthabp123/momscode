@@ -5,11 +5,11 @@ from frappe.model.mapper import get_mapped_doc
 def make_proforma_invoice(source_name, target_doc=None):
 	return _make_proforma_invoice(source_name,target_doc)
 def _make_proforma_invoice(source_name,target_doc=None):
-	def set_missing_values(source,target):
-		if customer:
-			target.customer=customer.name
-			target.customer_name=customer.customer_name
-			target.run_method("set_missing_values")
+	# def set_missing_values(source,target):
+	# 	if customer:
+	# 		target.customer=customer.name
+	# 		target.customer_name=customer.customer_name
+	# 	target.run_method("set_missing_values")
 	doclist=get_mapped_doc("Sales Order",source_name,{
 		"Sales Order":{
 			"doctype":"Proforma Invoice",

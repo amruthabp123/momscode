@@ -32,7 +32,7 @@ app_license = "MIT"
 
 # include js in doctype views
 doctype_js = {"Attendance Request": "public/js/attendance_request.js",
-			"Sales Order":"public/js/sales_order.js",}
+			"Sales Order":"public/js/sales_order.js"}
 
 # doctype_list_js = {"doctype" : "public/js/doctype_list.js"}
 # doctype_tree_js = {"doctype" : "public/js/doctype_tree.js"}
@@ -99,16 +99,12 @@ doctype_js = {"Attendance Request": "public/js/attendance_request.js",
 
 doc_events = {
  	"Sales Order": {
- 		"on_submit": "momscode.doc_events.sales_order.make_proforma_invoice",
+ 		"on_save": "momscode.doc_events.sales_order.make_proforma_invoice",
 # # 		"on_cancel": "method",
 # # 		"on_trash": "method"
- 	},
-	# "Attendance Request": {
-	# 	"validate": "momscode.doc_events.attendance_request.ss",
-		
-
-	# },
-}
+ 	}
+	
+ }
 
 # Scheduled Tasks
 # ---------------

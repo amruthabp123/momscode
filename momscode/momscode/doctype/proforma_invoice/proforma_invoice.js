@@ -44,6 +44,4 @@ frappe.ui.form.on("Momsitem", "qty", function(frm, cdt, cdn) {//assign amount to
 	frm.doc.items.forEach(function(d) { q += d.qty; });
     frm.set_value('total_quantity', q);
     cur_frm.refresh_field(total_quantity);
-
-
 });
